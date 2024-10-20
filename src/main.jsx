@@ -26,5 +26,5 @@ createRoot(document.getElementById('root')).render(
     <Toaster/>
     <RouterProvider router={router}/>
     </GoogleOAuthProvider>
-  </StrictMode>,
+  </StrictMode>
 )

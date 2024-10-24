@@ -19,6 +19,7 @@ import axios from 'axios';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/service/firebaseConfig';
 import { chatSession } from '@/service/AIModal';
+import { useNavigate } from 'react-router-dom';
 
 function CreateTrip() {
   const [place,setPlace] = useState();
@@ -28,6 +29,8 @@ function CreateTrip() {
   const[openDailog, setOpenDailog] = useState(false);
 
   const [loading,setLoading] = useState(false); 
+
+  const navigate = useNavigate();
 
   const handleInputChange = (name,value)=>{
     
@@ -83,9 +86,9 @@ function CreateTrip() {
   }
 
   const SaveAiTrip = async (TripData) => {
-  try {
     const docId = Date.now().toString();
     const user = JSON.parse(localStorage.getItem('user'));
+  try {
     if (!user?.email) throw new Error("User email is missing");
 
     await setDoc(doc(db, "AITrips", docId), {
@@ -98,6 +101,7 @@ function CreateTrip() {
     console.error("Error saving AI trip:", error);
   } finally {
     setLoading(false);
+    navigate('/view-trip/'+docId)
   }
 }; 
 

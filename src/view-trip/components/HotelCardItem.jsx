@@ -6,6 +6,11 @@ function HotelCardItem({hotel}) {
 
     const [photoUrl,setPhotoUrl] = useState();
 
+    
+    useEffect(()=>{
+      hotel && GetPlacePhoto();
+    },[hotel])
+
     const GetPlacePhoto = async() => {
       const data = {
         textQuery:hotel?.hotelName
@@ -19,9 +24,6 @@ function HotelCardItem({hotel}) {
       })
     }
   
-    useEffect(()=>{
-        hotel && GetPlacePhoto();
-    },[hotel])
   
   return (
     <Link to={'https://www.google.com/maps/search/?api=1&query='+hotel?.hotelName+","+hotel?.hotelAddress} target='_blank'>               

@@ -23,7 +23,7 @@ function PlacesToVisit({ trip }) {
           <div key={index} className='mt-2'>
             
             {/* Display day title */}
-            <h2 className='font-medium text-lg mt-[12px]'>{day.replace('day', 'Day ')}</h2>
+            <h2 className='font-medium text-lg mt-[12px]'>{day.replace('day', 'Day ')} Plan</h2>
 
             <div className='grid md:grid-cols-2 gap-5'>
             {/* Iterate over places in the plan */}

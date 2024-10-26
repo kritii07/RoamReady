@@ -2,28 +2,31 @@ import { Button } from '@/components/ui/button'
 import { GetPlaceDetails, PHOTO_REF_URL } from '@/service/GlobalApi';
 import React, { useEffect, useState } from 'react'
 import { IoIosSend } from "react-icons/io";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 
 function InfoSection({trip}) {
 
   const [photoUrl,setPhotoUrl] = useState();
+  
+  useEffect(()=>{
+    trip && GetPlacePhoto();
+  },[trip])
 
   const GetPlacePhoto = async() => {
     const data = {
-      query:trip?.userSelection?.location?.label
+      textQuery:trip?.userSelection?.location?.label
     }
     const result = await GetPlaceDetails(data).then(resp=>{
       //console.log(resp.data.places[0].photos[4].name);
 
-      const PhotoUrl = PHOTO_REF_URL.replace('{NAME}',resp.data.places[0].photos[3].name);
+      const PhotoUrl = PHOTO_REF_URL.replace('{NAME}',resp.data.places[0].photos[5].name);
       //console.log(PhotoUrl);
       setPhotoUrl(PhotoUrl);
     })
   }
 
-  useEffect(()=>{
-    trip && GetPlacePhoto();
-  },[trip])
+  
 
   return (
     <div>
@@ -39,7 +42,10 @@ function InfoSection({trip}) {
                     <h2 className='p-1 px-3 bg-gray-200 rounded-full text-gray-500 '>👬No. Of Traveler: {trip?.userSelection?.traveler} </h2>
                 </div>
             </div>
+            <div className='flex justify-center gap-3'>
             <Button><IoIosSend /></Button>
+            <Button className='bg-red-600 hover:bg-red-500'><RiDeleteBin6Line /></Button>
+            </div>
         </div>
     </div>
   )

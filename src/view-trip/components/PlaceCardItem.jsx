@@ -8,6 +8,10 @@ function PlaceCardItem({place}) {
 
   const [photoUrl,setPhotoUrl] = useState();
 
+  useEffect(()=>{
+    place && GetPlacePhoto();
+  },[place])
+  
     const GetPlacePhoto = async() => {
       const data = { 
         textQuery:place.placeName
@@ -21,9 +25,7 @@ function PlaceCardItem({place}) {
       })
     }
   
-    useEffect(()=>{
-      place && GetPlacePhoto();
-    },[place])
+   
 
   return (
     <Link to={'https://www.google.com/maps/search/?api=1&query='+place.placeName} target='_blank' >

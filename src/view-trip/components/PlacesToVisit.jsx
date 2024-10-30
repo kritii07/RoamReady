@@ -27,7 +27,7 @@ function PlacesToVisit({ trip }) {
 
             <div className='grid md:grid-cols-2 gap-5'>
             {/* Iterate over places in the plan */}
-            {details.plan.map((place, index) => (
+            {details?.plan?.map((place, index) => (
               <div key={index} >
                 <h2 className='font-medium text-sm text-orange-600'>{place.time}</h2>
                 <PlaceCardItem place = {place} />

@@ -4,7 +4,7 @@
 
 ## Features
 - **AI-powered recommendations**: Get personalized travel itineraries with Gemini AI.
-- **Authentication**: Secure user login and data storage with Google OAuth.
+- **Authentication**: Secure user login with Google OAuth.
 - **Real-time updates**: View and modify trip details dynamically.
 - **Responsive design**: Built with Tailwind CSS to ensure a seamless experience across devices.
 

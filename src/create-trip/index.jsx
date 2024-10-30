@@ -91,9 +91,22 @@ function CreateTrip() {
   try {
     if (!user?.email) throw new Error("User email is missing");
 
+    // Check if TripData is a JSON string and needs parsing
+    let tripDataParsed;
+    if (typeof TripData === "string") {
+        try {
+            tripDataParsed = JSON.parse(TripData); // Attempt to parse if it's a string
+        } catch (error) {
+            console.error("Error parsing TripData JSON string:", error);
+            throw new Error("Invalid JSON format in TripData");
+        }
+    } else {
+        tripDataParsed = TripData; // Use directly if it's an object
+    }
+
     await setDoc(doc(db, "AITrips", docId), {
       userSelection: formData,
-      tripData: JSON.parse(TripData),
+      tripData: tripDataParsed,
       userEmail: user?.email,
       id: docId
     });
@@ -121,7 +134,7 @@ function CreateTrip() {
 
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
-      <h2 className='font-bold text-3xl'>Tell us your travel preferences 🏕️🌲</h2>
+      <h2 className='font-bold text-3xl'>Let AI take the stress out of your travel planning 🏕️🌲</h2>
       <p className='mt-3 text-gray-500 text-xl'>Just provide some basic information, and our trip planner will generate a customised itinerary based on your preferences.</p>
 
       <div className='mt-20 flex flex-col gap-10' >
@@ -183,8 +196,11 @@ function CreateTrip() {
         </Button>
       </div>
 
-      <Dialog open={openDailog}>
+      <Dialog open={openDailog} onOpenChange={() => setOpenDailog(false)}>
         <DialogContent>
+        <Button onClick={() => setOpenDailog(false)} className="absolute top-3 right-3 w-[60px]">
+          &times; 
+        </Button>
           <DialogHeader>
             <DialogDescription>
               <img src="/logo.svg" alt="" />

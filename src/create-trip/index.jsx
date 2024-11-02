@@ -20,6 +20,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/service/firebaseConfig';
 import { chatSession } from '@/service/AIModal';
 import { useNavigate } from 'react-router-dom';
+import logo from '/mainLogo.png';
 
 function CreateTrip() {
   const [place,setPlace] = useState();
@@ -203,8 +204,8 @@ function CreateTrip() {
         </Button>
           <DialogHeader>
             <DialogDescription>
-              <img src="/logo.svg" alt="" />
-              <h2 className='font-bold text-lg mt-7'>Sign In With Google</h2>
+              <img src={logo} alt="" width='180px'/>
+              <h2 className='font-bold text-lg mt-2'>Sign In With Google</h2>
               <p>Sign in to the App with Google authentication securely.</p>
 
               <Button

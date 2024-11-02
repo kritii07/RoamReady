@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import backgroundImage from "/heroSection.jpg"; // Adjust the path as needed
+import backgroundImage from "/heroSection.jpg"; 
 
 function Hero() {
   return (

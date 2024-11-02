@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog"
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
+import logo from '/mainLogo.png';
 
 
 function Header() {
@@ -50,7 +51,7 @@ function Header() {
 
   return (
     <div className="p-3 w-full shadow-sm flex justify-between items-center px-5 ">
-      <img src="/logo.svg" alt="" />
+      <img src={logo} alt="" width='200px' />
         <div>
           {user ? 
           <div className="flex items-center gap-3">
@@ -87,8 +88,8 @@ function Header() {
         </Button>
           <DialogHeader>
             <DialogDescription>
-              <img src="/logo.svg" alt="" />
-              <h2 className='font-bold text-lg mt-7'>Sign In With Google</h2>
+              <img src={logo} alt="" width='180px'/>
+              <h2 className='font-bold text-lg mt-2'>Sign In With Google</h2>
               <p>Sign in to the App with Google authentication securely.</p>
 
               <Button

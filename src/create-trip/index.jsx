@@ -95,6 +95,11 @@ function CreateTrip() {
     // Check if TripData is a JSON string and needs parsing
     let tripDataParsed;
     if (typeof TripData === "string") {
+
+      if (!TripData.trim().endsWith("}]}}}")) {
+        TripData += "}"; // Append missing closing bracket if necessary
+      }
+      
         try {
             tripDataParsed = JSON.parse(TripData); // Attempt to parse if it's a string
         } catch (error) {
